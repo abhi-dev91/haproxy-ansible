@@ -1,0 +1,31 @@
+ - hosts: all
+   vars_prompt:
+           - name: np
+             prompt: "Enter the port no. to bind the Load Balancer"
+             private: no
+
+   tasks:
+           - name: "Installling HAproxy"
+             package:
+                     name: "haproxy"
+                     state: present
+
+           - name: "Configuring haproxy.cfg"
+             template:
+                     src: haproxy.cfg
+                     dest: /etc/haproxy/haproxy.cfg
+
+           - name: "Managing SElinux service to allow on custom port"
+             community.general.seport:
+                     ports: 0{{ np }}
+                     proto: tcp
+                     setype: http_port_t
+                     state: present
+
+           - name: "Starting Haproxy"
+             service:
+                     name: haproxy
+                     state: restarted
+                     enabled: yes
+
+

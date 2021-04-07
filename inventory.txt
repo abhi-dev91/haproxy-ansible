@@ -1,0 +1,7 @@
+[haproxy]
+localhost
+
+
+
+[servers]
+localhost
