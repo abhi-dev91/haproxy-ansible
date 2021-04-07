@@ -1,7 +1,7 @@
 [haproxy]
-localhost
+#Add IP of the instance to be  load Balancer Here
 
 
 
 [servers]
-localhost
+#Add IP of apache servers Here.
