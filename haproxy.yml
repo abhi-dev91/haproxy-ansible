@@ -1,4 +1,4 @@
- - hosts: all
+ - hosts: haproxy
    vars_prompt:
            - name: np
              prompt: "Enter the port no. to bind the Load Balancer"
